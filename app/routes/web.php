@@ -51,6 +51,13 @@ Route::get('/telesecundaria', function () {
             ->paginate(7)]);
 });
 
+Route::get('/practica_supervisada', function () {
+    return Inertia::render('Tableros/PracticaSupervisada', [
+        'cuadernillos' => Libro::where('nivel', '6')->where('materia', 'Cuadernillos para estudiantes')->orderBy('orden', 'asc')->get(),
+        'guias' => Libro::where('nivel', '6')->where('materia', 'Guías para docentes')->orderBy('orden', 'asc')->get(),
+    ]);
+});
+
 Route::get('{any}/{id}/idiomas_mayas', function ($any, $id) {
     return Inertia::render('Tableros/Idiomas_mayas',
         ['libros' => Libros_idiomas_mayas::where('libro_id', $id)
