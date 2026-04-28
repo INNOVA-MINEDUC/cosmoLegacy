@@ -1,0 +1,56 @@
+# Laravel
+/vendor/
+/node_modules/
+/public/storage
+/storage/*.key
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+/.vagrant
+
+# Laravel 8+/Sail
+/docker-compose.override.yml
+
+# Laravel IDE Helper
+/_ide_helper.php
+/_ide_helper_models.php
+
+# Laravel Horizon
+/.horizon
+
+# Laravel Telescope
+/.telescope
+
+# Laravel Nova
+/public/vendor/nova
+
+# Vite
+/public/build
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+/storage/logs/*.log
+
+# Cache
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# Nginx, PHP, MariaDB, Docker
+mariadb_data/
+nginx/
+php/
+
+# Otros temporales
+/public/tmp-libros/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+/app/public/tmp-libros

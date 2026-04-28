@@ -1,0 +1,8 @@
+public/tmp-libros/
+storage/
+vendor/
+node_modules/
+tests/
+.git/
+*.log
+*.tmp
