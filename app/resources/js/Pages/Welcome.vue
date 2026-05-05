@@ -444,9 +444,9 @@ function handleImageError() {
                 <footer
                     class=" flex items-center justify-center py-16 text-center text-sm text-black dark:text-white/70"
                 >
-                    <div class="max-h-48 bg-contain bg-no-repeat bg-center bg-transparent aspect-video h-full w-full flex-1 bg-transparent bg-gray-50 text-black/50 dark:text-white/50"
-                         style="background-image: url('/Digecade.png')"
-                    ></div>
+                    <div class="bg-contain bg-no-repeat bg-center bg-transparent aspect-video w-72 h-auto bg-gray-50 text-black/50 dark:text-white/50"
+     style="background-image: url('/DCE_LOGO.png')">
+</div>
                 </footer>
             </div>
         </div>
