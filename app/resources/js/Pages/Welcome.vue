@@ -432,7 +432,7 @@ function handleImageError() {
                                 </h2>
 
                                 <p class="text-justify mt-4 text-sm/relaxed">
-                                    El Ministerio de Educación pone a disposición los libros en idiomas mayas del año 2025 en formato PDF. Estos materiales están disponibles en diversas lenguas mayas de Guatemala y forman parte del programa de educación bilingüe intercultural.
+                                    El Ministerio de Educación pone a disposición los libros de nivel de educación preprimaria y primaria en diferentes idiomas mayas del año 2026 en formato PDF. Estos materiales cuentan con una alta calidad gráfica, por lo que el tiempo de descarga puede variar según la velocidad de conexión a internet disponible. Cada libro incluye la guía metodológica para el docente.
                                 </p>
                             </div>
                         </a>
