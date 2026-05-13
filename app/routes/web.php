@@ -58,6 +58,15 @@ Route::get('/practica_supervisada', function () {
     ]);
 });
 
+Route::get('/idiomas_mayas', function () {
+    return Inertia::render('Tableros/TodosIdiomasMayas',
+        ['libros' => Libros_idiomas_mayas::with(['libro' => function ($query) {
+                return $query->select('id', 'materia', 'grado', 'nivel');
+            }])
+            ->orderBy('idioma', 'asc')
+            ->paginate(10)]);
+});
+
 Route::get('{any}/{id}/idiomas_mayas', function ($any, $id) {
     return Inertia::render('Tableros/Idiomas_mayas',
         ['libros' => Libros_idiomas_mayas::where('libro_id', $id)
