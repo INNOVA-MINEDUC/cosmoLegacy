@@ -61,9 +61,13 @@ Route::get('/practica_supervisada', function () {
 Route::get('/idiomas_mayas', function () {
     return Inertia::render('Tableros/TodosIdiomasMayas',
         ['libros' => Libros_idiomas_mayas::with(['libro' => function ($query) {
-                return $query->select('id', 'materia', 'grado', 'nivel');
+                return $query->select('id', 'materia', 'grado', 'nivel', 'orden');
             }])
-            ->orderBy('idioma', 'asc')
+            ->join('libros', 'libros_idiomas_mayas.libro_id', '=', 'libros.id')
+            ->orderBy('libros.nivel', 'asc')
+            ->orderBy('libros.orden', 'asc')
+            ->orderBy('libros_idiomas_mayas.idioma', 'asc')
+            ->select('libros_idiomas_mayas.*')
             ->paginate(10)]);
 });
 
