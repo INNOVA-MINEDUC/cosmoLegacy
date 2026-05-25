@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Models\Libro;
 use App\Models\Libros_idiomas_mayas;
+use App\Models\NivelacionMaterial;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -55,6 +56,13 @@ Route::get('/practica_supervisada', function () {
     return Inertia::render('Tableros/PracticaSupervisada', [
         'cuadernillos' => Libro::where('nivel', '6')->where('materia', 'Cuadernillos para estudiantes')->orderBy('orden', 'asc')->get(),
         'guias' => Libro::where('nivel', '6')->where('materia', 'Guías para docentes')->orderBy('orden', 'asc')->get(),
+    ]);
+});
+
+Route::get('/nivelacion', function () {
+    return Inertia::render('Tableros/Nivelacion', [
+        'evaluacion'   => NivelacionMaterial::with('archivos')->where('kit', 'evaluacion')->orderBy('orden')->get(),
+        'intervencion' => NivelacionMaterial::with('archivos')->where('kit', 'intervencion')->orderBy('orden')->get(),
     ]);
 });
 

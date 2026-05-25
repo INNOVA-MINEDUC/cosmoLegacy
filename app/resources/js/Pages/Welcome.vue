@@ -437,6 +437,36 @@ function handleImageError() {
                             </div>
                         </a>
 
+                        <!-- Nivelación de los Aprendizajes -->
+                        <a
+                            href="/nivelacion"
+                            class="flex items-start gap-4 rounded-lg bg-white py-6 px-3 md:px-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
+                        >
+                            <div class="px-1 pt-3 sm:pt-5 md:px-7">
+                                <h2
+                                    class="flex text-xl font-semibold text-black dark:text-white"
+                                >
+                                    <svg
+                                        class="size-5 sm:size-6"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <g fill="#FF2D20">
+                                            <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18" stroke="#FF2D20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                    </svg>
+                                    <span class="pl-6">
+                                        Estrategia de Nivelación de los Aprendizajes
+                                    </span>
+                                </h2>
+
+                                <p class="text-justify mt-4 text-sm/relaxed">
+                                    Materiales de apoyo para la Estrategia de Nivelación de los Aprendizajes. Incluye el Kit de Evaluación con instrumentos diagnósticos y el Kit de Intervención con guías y recursos para docentes.
+                                </p>
+                            </div>
+                        </a>
+
 <!--                        <div
                             class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800"
                         >
