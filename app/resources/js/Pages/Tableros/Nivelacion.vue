@@ -33,33 +33,41 @@ defineProps({
                         </tr>
                     </thead>
                     <tbody>
-                        <template v-for="(item, index) in evaluacion" :key="`eval-${item.id}`">
-                            <!-- Fila principal -->
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-3">{{ index + 1 }}</td>
-                                <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">{{ item.titulo }}</th>
-                                <td class="px-6 py-3 text-center">
-                                    <a v-if="item.enlace && (!item.archivos || !item.archivos.length)" :href="item.enlace" target="_blank"
-                                        class="inline-flex items-center px-2.5 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Ver
-                                    </a>
-                                </td>
-                            </tr>
-                            <!-- Sub-filas para archivos múltiples -->
-                            <tr v-for="archivo in item.archivos" :key="archivo.id"
-                                class="bg-gray-50 border-b dark:bg-gray-700/50 dark:border-gray-700">
-                                <td class="px-6 py-2"></td>
-                                <td class="px-6 py-2 text-xs text-gray-500 dark:text-gray-400 pl-10">
-                                    <span class="mr-1 text-gray-400">↳</span>{{ archivo.titulo }}
-                                </td>
-                                <td class="px-6 py-2 text-center">
-                                    <a v-if="archivo.enlace" :href="archivo.enlace" target="_blank"
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700">
-                                        Ver
-                                    </a>
-                                </td>
-                            </tr>
-                        </template>
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                            v-for="(item, index) in evaluacion"
+                            :key="`eval-${item.id}`"
+                        >
+                            <td class="px-6 py-4">{{ index + 1 }}</td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ item.titulo }}</th>
+                            <td class="px-6 py-4 text-center">
+                                <!-- Carpeta: desplegable -->
+                                <details v-if="item.archivos && item.archivos.length > 0" class="text-left">
+                                    <summary class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 dark:text-blue-300 dark:bg-blue-900/30 dark:border-blue-700 dark:hover:bg-blue-900/50 select-none list-none">
+                                        <svg class="size-3.5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" /></svg>
+                                        Ver archivos ({{ item.archivos.length }})
+                                    </summary>
+                                    <div class="mt-2 space-y-1.5 min-w-max">
+                                        <template v-for="archivo in item.archivos" :key="archivo.id">
+                                            <a v-if="archivo.enlace" :href="archivo.enlace" target="_blank"
+                                                class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-gray-700 hover:text-blue-700 hover:bg-blue-50 rounded dark:text-gray-300 dark:hover:text-blue-300 dark:hover:bg-blue-900/20 transition-colors">
+                                                <svg class="size-3 shrink-0 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                                                {{ archivo.titulo }}
+                                            </a>
+                                            <span v-else class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-gray-400 dark:text-gray-500">
+                                                <svg class="size-3 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                                                {{ archivo.titulo }}
+                                            </span>
+                                        </template>
+                                    </div>
+                                </details>
+                                <!-- Material único -->
+                                <a v-else-if="item.enlace" :href="item.enlace" target="_blank"
+                                    class="inline-flex items-center px-2.5 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -81,33 +89,41 @@ defineProps({
                         </tr>
                     </thead>
                     <tbody>
-                        <template v-for="(item, index) in intervencion" :key="`int-${item.id}`">
-                            <!-- Fila principal -->
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-3">{{ index + 1 }}</td>
-                                <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">{{ item.titulo }}</th>
-                                <td class="px-6 py-3 text-center">
-                                    <a v-if="item.enlace && (!item.archivos || !item.archivos.length)" :href="item.enlace" target="_blank"
-                                        class="inline-flex items-center px-2.5 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Ver
-                                    </a>
-                                </td>
-                            </tr>
-                            <!-- Sub-filas para archivos múltiples -->
-                            <tr v-for="archivo in item.archivos" :key="archivo.id"
-                                class="bg-gray-50 border-b dark:bg-gray-700/50 dark:border-gray-700">
-                                <td class="px-6 py-2"></td>
-                                <td class="px-6 py-2 text-xs text-gray-500 dark:text-gray-400 pl-10">
-                                    <span class="mr-1 text-gray-400">↳</span>{{ archivo.titulo }}
-                                </td>
-                                <td class="px-6 py-2 text-center">
-                                    <a v-if="archivo.enlace" :href="archivo.enlace" target="_blank"
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700">
-                                        Ver
-                                    </a>
-                                </td>
-                            </tr>
-                        </template>
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                            v-for="(item, index) in intervencion"
+                            :key="`int-${item.id}`"
+                        >
+                            <td class="px-6 py-4">{{ index + 1 }}</td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ item.titulo }}</th>
+                            <td class="px-6 py-4 text-center">
+                                <!-- Carpeta: desplegable -->
+                                <details v-if="item.archivos && item.archivos.length > 0" class="text-left">
+                                    <summary class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 dark:text-blue-300 dark:bg-blue-900/30 dark:border-blue-700 dark:hover:bg-blue-900/50 select-none list-none">
+                                        <svg class="size-3.5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" /></svg>
+                                        Ver archivos ({{ item.archivos.length }})
+                                    </summary>
+                                    <div class="mt-2 space-y-1.5 min-w-max">
+                                        <template v-for="archivo in item.archivos" :key="archivo.id">
+                                            <a v-if="archivo.enlace" :href="archivo.enlace" target="_blank"
+                                                class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-gray-700 hover:text-blue-700 hover:bg-blue-50 rounded dark:text-gray-300 dark:hover:text-blue-300 dark:hover:bg-blue-900/20 transition-colors">
+                                                <svg class="size-3 shrink-0 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                                                {{ archivo.titulo }}
+                                            </a>
+                                            <span v-else class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-gray-400 dark:text-gray-500">
+                                                <svg class="size-3 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                                                {{ archivo.titulo }}
+                                            </span>
+                                        </template>
+                                    </div>
+                                </details>
+                                <!-- Material único -->
+                                <a v-else-if="item.enlace" :href="item.enlace" target="_blank"
+                                    class="inline-flex items-center px-2.5 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
