@@ -25,10 +25,16 @@ WORKDIR /var/www
 
 # Copia solo los archivos de dependencias primero para aprovechar el cache de Docker
 COPY package*.json ./
-# Limpia node_modules y package-lock.json antes de instalar
 RUN rm -rf node_modules package-lock.json && npm cache clean --force && npm install
+
+# Copia composer files y descarga dependencias PHP
+COPY composer.json composer.lock ./
+RUN composer install --no-interaction --no-scripts --ignore-platform-reqs
 
 # Copia el resto del código
 COPY . .
+
+# Compila assets frontend en tiempo de build
+RUN npm run build
 
 CMD ["php-fpm"]

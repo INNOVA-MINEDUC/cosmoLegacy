@@ -13,6 +13,36 @@ services:
       - "8000:8000"
     env_file:
       - .env
-    command: sh -c "composer config --no-interaction allow-plugins.php-http/discovery true && composer update --ignore-platform-reqs --no-interaction && npm install && npm run build && php artisan serve --host=0.0.0.0 --port=8000"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    command: sh -c "php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"
+    networks:
+      - appnet
+
+  mariadb:
+    image: mariadb:10
+    container_name: mariadb-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+    ports:
+      - "3326:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - appnet
+
 volumes:
   dbdata:
+
+networks:
+  appnet:
