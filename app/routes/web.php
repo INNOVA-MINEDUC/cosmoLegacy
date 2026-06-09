@@ -40,7 +40,7 @@ Route::get('/educacion_especial', function () {
 
 Route::get('/seminario', function () {
     return Inertia::render('Tableros/Seminario_docente',
-        ['libros' => Libro::where('nivel', '4')
+        ['libros' => Libro::where('nivel', '10')
             ->orderBy('orden', 'asc')
             ->paginate(7)]);
 });

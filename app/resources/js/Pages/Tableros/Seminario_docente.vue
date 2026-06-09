@@ -9,7 +9,7 @@ defineProps(['libros'])
 </script>
 
 <template>
-    <Head title="Seminario 2025"/>
+    <Head title="Seminario 2026"/>
 
     <div
         class="bg-cover bg-center flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900"
